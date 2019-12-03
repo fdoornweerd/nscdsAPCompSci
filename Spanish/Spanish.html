@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Spanish</title>
+            <script src="jquery.js"></script>
+        </head>
+        <body>
+            <img src='libro.jpg'>
+            <img src='https://www.tecnonews.info/files/3-9592-fotoArticulo/libro.jpg'>
+            <div id='signIn'>
+                <h1>SIGN IN</h1>
+                <div style='position:absolute; left:100px; top:100px'>USERNAME:</div>
+                <input id='username' autocomplete='off' style='position:absolute; left:100px; top:130px'>
+
+                <div style='position:absolute; left:100px; top:160px'>PASSWORD:</div>
+                <input id='password' type='password' autocomplete='off' style='position:absolute; left:100px; top:190px'>
+                <button id='submitUsername' style='position:absolute; left:250px; top:150px' onclick='submitUser()'>SUBMIT</button>
+
+                <div id='createNewUser' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:100px; top:250px; cursor:pointer'>NEW USER</div>
+            </div>
+
+            <div id='mainPage'>
+                <h1>SELECT TYPE OF WORDS YOU'D LIKE TO STUDY</h1>
+                <div id='learnVerbs' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:100px; top:100px; cursor:pointer'>VERBS</div>
+                <div id='learnNouns' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:100px; top:200px; cursor:pointer'>NOUNS</div>
+                <div id='showUserMain' style='width:100px; height:20px; position:absolute; border: 1px solid black; right:50px; top: 10px;'></div>
+            </div>
+
+            <div id='newUser'>
+                <h1>CREATE NEW USER</h1>
+                <div style='position:absolute; left:100px; top:100px'>USERNAME:</div>
+                <input id='newUsername' autocomplete='off' style='position:absolute; left:100px; top:130px'>
+
+                <div style='position:absolute; left:100px; top:160px'>PASSWORD:</div>
+                <input id='newPassword' autocomplete='off' style='position:absolute; left:100px; top:190px'>
+
+                <div style='position:absolute; left:100px; top:220px'>EMAIL:</div>
+                <input id='newEmail' autocomplete='off' style='position:absolute; left:100px; top:250px'>
+
+                <button id='create' style='position:absolute; left:250px; top:150px' onclick='createUser()'>CREATE</button> 
+            </div>
+
+            <div id='nounPage'>
+                <div id='nounBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer'>BACK</div>
+                <button id='startNouns' style='position:absolute; left:300px; top:50px' onclick='startNouns()'>Start Learning Nouns</button>
+                <div id='showUserNoun' style='width:100px; height:20px; position:absolute; border: 1px solid black; right:50px; top: 10px;'></div>
+                <div id='nounDisplay'></div>
+            </div>
+
+            <div id='verbPage'>
+                    <div id='verbBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer'>BACK</div>
+                    <button id='startVerbs' style='position:absolute; left:300px; top:50px' onclick='startVerbs()'>Start Learning Verbs</button>
+                    <div id='showUserVerb' style='width:100px; height:20px; position:absolute; border: 1px solid black; right:50px; top: 10px;'></div>
+                    <div id='verbDisplay'></div>
+            </div>
+        </body>
+        <script src='Spanish.js'></script>
+    </html>
