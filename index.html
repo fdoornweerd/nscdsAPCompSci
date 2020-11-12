@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Sign Language Learn (ASL)</title>
+            <script src="jquery.js"></script>
+
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+            <meta name="google-signin-client_id" content="248797752756-j9qu4ah2hmlvodj7nd79v3pdjhq5fb9h.apps.googleusercontent.com">
+        </head>
+        <body>
+            <div id='signIn'>
+                <div class="g-signin2" data-onsuccess="onSignIn" style="position:absolute; left:590px; top:230px;"></div>
+                <h1 style="position:absolute; left:550px; top:100px; font-size: 60px;">SIGN IN</h1>
+            </div>
+
+            <div id='mainPage'>
+                <div id='#signOut' style='width:100px; height:20px; position:absolute; border: 1px solid black; top:10px;'></div>
+                <a href="#" onclick="signOut();" style='position:absolute; top:10px; left:20px'>Sign out</a>
+                <h1 style='position:absolute; left:200px; top:50px; font-size: 40px;'>SELECT TYPE OF WORDS YOU'D LIKE TO STUDY</h1>
+
+                <div id='learnVerbs' style='width:300px; height:50px; position:absolute; border: 1px solid black; left:500px; top:150px; cursor:pointer; font-size: 50px; text-align:center;'onclick='startVerbs()'>VERBS</div>
+                <div id='learnNouns' style='width:300px; height:50px; position:absolute; border: 1px solid black; left:500px; top:300px; cursor:pointer;  font-size: 50px; text-align:center;' onclick='startNouns()'>NOUNS</div>
+                <div id='learnMiscellaneous' style='width:300px; height:50px; position:absolute; border: 1px solid black; left:500px; top:450px; cursor:pointer;  font-size: 50px; text-align:center;' onclick='startMiscellaneous()'>Miscellaneous</div>
+                <div id='learnSets' style='width:300px; height:50px; position:absolute; border: 1px solid black; left:500px; top:600px; cursor:pointer;  font-size: 50px; text-align:center;' onclick='startSet(false)'>My Sets</div>
+
+                <div id= 'verbList' style='width:150px; height:30px; position:absolute; border: 1px solid black; left:580px; top:210px; cursor:pointer; font-size: 30px; text-align:center;' onclick='displayList(this.id)'>Verb List</div>
+                <div id='nounList'  style='width:150px; height:30px; position:absolute; border: 1px solid black; left:580px; top:360px; cursor:pointer;  font-size: 30px; text-align:center;' onclick='displayList(this.id)'>Noun List</div>
+                <div id='miscList'  style='width:240px; height:30px; position:absolute; border: 1px solid black; left:535px; top:510px; cursor:pointer;  font-size: 30px; text-align:center;' onclick='displayList(this.id)'>Miscellaneous List</div>
+                <div id='setList'  style='width:180px; height:30px; position:absolute; border: 1px solid black; left:565px; top:660px; cursor:pointer;  font-size: 30px; text-align:center;' onclick='displayList(this.id)'>My Sets List</div>
+
+                <div id='showUserMain' style='width:100px; height:40px; position:absolute; border: 1px solid black; left:1300px; top: 10px;'></div>
+            </div>
+
+            <div id='nounPage'>
+                <div id='nounBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='showUserNoun' style='width:100px; height:40px; position:absolute; border: 1px solid black; left:1300px; top: 10px;'></div>
+                <div id='nounDisplay'></div>
+            </div>
+
+            <div id='verbPage'>
+                    <div id='verbBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                    <div id='showUserVerb' style='width:100px; height:40px; position:absolute; border: 1px solid black; left:1300px; top: 10px;'></div>
+                    <div id='verbDisplay'></div>
+            </div>
+
+            <div id='miscellaneousPage'>
+                <div id='miscellaneousBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='showUserMiscellaneous' style='width:100px; height:40px; position:absolute; border: 1px solid black; left:1300px; top: 10px;'></div>
+                <div id='miscellaneousDisplay'></div>
+            </div>
+
+            <div id='setsPage'>
+                <div id='setBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='showUserSets' style='width:100px; height:40px; position:absolute; border: 1px solid black; left:1300px; top: 10px;'></div>
+                <select id='SetOptionsLearn' style='position:absolute; left:10px; top:50px; font-size:30px;' onchange='startSet(true)'>Choose Set</select>
+                <div id='setsDisplay'></div>
+            </div>
+
+            <div id='VerbsList'>
+                <div id='verbBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='VerbsContainer' style ='position:absolute; width:1400px; height:600px; top:80px; left:10px; overflow: scroll; border: 2px solid black'></div>
+                <input id='verbSearch' style='position:absolute; left:550px; top:10px; width:300px; height:40px; font-size:35px;' oninput='search(this.id)'>
+                <button id='newVerbSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer' onclick='setInfoWindow(this.id)'>Create New Set</button>
+                <button id='endVerbSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer; display: none;' onclick='endSet(this.id)'>Finish Set</button>
+            </div>
+
+            <div id='NounsList'>
+                <div id='nounBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='NounsContainer' style ='position:absolute; width:1400px; height:600px; top:80px; left:10px; overflow: scroll; border: 2px solid black'></div>
+                <input id='nounSearch' style='position:absolute; left:550px; top:10px; width:300px; height:40px; font-size:35px;' oninput='search(this.id)'>
+                <button id='newNounSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer' onclick='setInfoWindow(this.id)'>Create New Set</button>
+                <button id='endNounSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer; display: none;' onclick='endSet(this.id)'>Finish Set</button>
+            </div>
+
+            <div id='MiscList'>
+                <div id='miscellaneousBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='MiscellaneousContainer' style ='position:absolute; width:1400px; height:600px; top:80px; left:10px; overflow: scroll; border: 2px solid black'></div>
+                <input id='miscellaneousSearch' style='position:absolute; left:550px; top:10px; width:300px; height:40px; font-size:35px;' oninput='search(this.id)'>
+                <button id='newMiscellaneousSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer' onclick='setInfoWindow(this.id)'>Create New Set</button>
+                <button id='endMiscellaneousSet' style ='position:absolute; left:1100px; top:10px; font-size: 40px; cursor:pointer; display: none;' onclick='endSet(this.id)'>Finish Set</button>
+            </div>
+
+            <div id='SetsList'>
+                <div id='setBack' style='width:100px; height:20px; position:absolute; border: 1px solid black; left:10px; top:10px; cursor:pointer' onclick='back()'>BACK</div>
+                <div id='SetsContainer' style ='position:absolute; width:1400px; height:600px; top:80px; left:10px; overflow: scroll; border: 2px solid black'></div>
+                <input id='setSearch' style='position:absolute; left:550px; top:10px; width:300px; height:40px; font-size:35px;' oninput='search(this.id)'>
+                <select id='SetOptionsList' style='position:absolute; left:200px; top:10px; font-size:35px;' onchange='search("setSearch")'>Choose Set</select>
+                <button id='setDelete' style='position:absolute; left:1200px; top:10px; font-size:35px;' onclick='deleteSet()'>Delete Set</button>
+                <button id='specificDelete' style='position:absolute; left:900px; top:10px; font-size:35px;' onclick = 'deleteSpecific()'>Delete Specific</button>
+                <button id='endSpecificDelete' style='position:absolute; left:900px; top:10px; font-size:35px; display: none;' onclick = 'endDeleteSpecific()'>Finish Deleting</button>
+            </div>
+
+        </body>
+        <script src='index.js'></script>
+    </html>
